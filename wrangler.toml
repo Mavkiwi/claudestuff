@@ -1,0 +1,13 @@
+# Cloudflare Pages + D1 configuration
+# Deploy: npx wrangler pages deploy . --project-name=ai-training
+# D1 setup: npx wrangler d1 create ai-training-db
+
+name = "ai-training"
+compatibility_date = "2024-12-01"
+
+# D1 SQLite Database (create first, then paste the ID here)
+# Run: npx wrangler d1 create ai-training-db
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "ai-training-db"
+# database_id = "<paste-after-creating>"
