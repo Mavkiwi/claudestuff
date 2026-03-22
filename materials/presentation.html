@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leading in the Age of AI — Plex Consulting</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --plex-forest: #2D5016;
+  --plex-water: #1E4D7B;
+  --plex-teal: #00A9A5;
+  --plex-orange: #E07A5F;
+  --dark-bg: #1a1a2e;
+  --dark-bg-alt: #16213e;
+  --light-bg: #f7f8fa;
+  --light-text: #f0f0f0;
+  --dark-text: #1a1a2e;
+}
+
+.reveal {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: 'Spectral', serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+.reveal h1 { font-size: 2.8em; line-height: 1.1; }
+.reveal h2 { font-size: 2.2em; line-height: 1.15; }
+.reveal h3 { font-size: 1.6em; }
+
+.reveal .slides section {
+  padding: 40px 60px;
+}
+
+/* Footer */
+.slide-footer {
+  position: fixed;
+  bottom: 16px;
+  right: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65em;
+  color: rgba(255,255,255,0.35);
+  z-index: 100;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+}
+.light-footer .slide-footer {
+  color: rgba(0,0,0,0.25);
+}
+
+/* Stat number */
+.big-stat {
+  font-family: 'Spectral', serif;
+  font-size: 5em;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0.2em 0;
+}
+.big-stat.teal { color: var(--plex-teal); }
+.big-stat.orange { color: var(--plex-orange); }
+.big-stat.water { color: var(--plex-water); }
+.big-stat.forest { color: var(--plex-forest); }
+
+/* Big quote */
+.big-quote {
+  font-family: 'Spectral', serif;
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1.3;
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cards grid */
+.cards-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 32px 28px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.card.light-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  color: var(--dark-text);
+}
+.card h3 {
+  font-family: 'Spectral', serif;
+  margin-top: 0;
+  font-size: 1.3em;
+}
+.card .card-stat {
+  font-size: 2.8em;
+  font-weight: 700;
+  font-family: 'Spectral', serif;
+  line-height: 1;
+  margin: 12px 0;
+}
+.card.highlighted {
+  border-color: var(--plex-teal);
+  background: rgba(0,169,165,0.12);
+  box-shadow: 0 0 40px rgba(0,169,165,0.15);
+}
+.card.highlighted.light-card {
+  background: rgba(0,169,165,0.08);
+  border-color: var(--plex-teal);
+  box-shadow: 0 4px 30px rgba(0,169,165,0.12);
+}
+
+/* Comparison columns */
+.comparison {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.comparison .col {
+  flex: 1;
+  max-width: 380px;
+  text-align: left;
+}
+.comparison .col h3 {
+  font-size: 1.4em;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--plex-teal);
+}
+
+/* Pillar columns */
+.pillars {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.pillar {
+  flex: 1;
+  max-width: 280px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  text-align: center;
+}
+.pillar.forest { background: rgba(45,80,22,0.8); }
+.pillar.water { background: rgba(30,77,123,0.8); }
+.pillar.teal { background: rgba(0,169,165,0.8); }
+.pillar.orange { background: rgba(224,122,95,0.8); }
+.pillar h3 {
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-top: 50px;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+}
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.timeline-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--plex-teal);
+  border: 3px solid var(--dark-bg);
+  margin-bottom: 12px;
+  box-shadow: 0 0 12px rgba(0,169,165,0.4);
+}
+.timeline-year {
+  font-weight: 700;
+  font-size: 0.95em;
+  color: var(--plex-teal);
+  margin-bottom: 4px;
+}
+.timeline-label {
+  font-size: 0.78em;
+  text-align: center;
+  max-width: 100px;
+  line-height: 1.3;
+  color: rgba(255,255,255,0.8);
+}
+.light-timeline .timeline::before {
+  background: rgba(0,0,0,0.1);
+}
+.light-timeline .timeline-dot {
+  border-color: var(--light-bg);
+}
+.light-timeline .timeline-label {
+  color: rgba(0,0,0,0.6);
+}
+
+/* Flow diagram */
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.flow-box {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 28px 36px;
+  font-weight: 600;
+  font-size: 1.15em;
+  min-width: 160px;
+  text-align: center;
+}
+.flow-box.accent {
+  background: rgba(0,169,165,0.15);
+  border-color: var(--plex-teal);
+  color: var(--plex-teal);
+}
+.flow-arrow {
+  font-size: 2em;
+  color: rgba(255,255,255,0.3);
+}
+.light-flow .flow-box {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  color: var(--dark-text);
+}
+.light-flow .flow-box.accent {
+  background: rgba(0,169,165,0.08);
+  border-color: var(--plex-teal);
+  color: var(--plex-teal);
+}
+.light-flow .flow-arrow {
+  color: rgba(0,0,0,0.2);
+}
+
+/* Pyramid */
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+.pyramid-level {
+  padding: 18px 28px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  color: #fff;
+}
+.pyramid-level:nth-child(1) { width: 40%; background: rgba(224,122,95,0.9); }
+.pyramid-level:nth-child(2) { width: 60%; background: rgba(30,77,123,0.9); }
+.pyramid-level:nth-child(3) { width: 80%; background: rgba(45,80,22,0.7); }
+
+/* Tier list */
+.tier-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 700px;
+  margin: 30px auto 0;
+}
+.tier {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid;
+}
+.tier-label {
+  font-weight: 700;
+  font-family: 'Spectral', serif;
+  min-width: 80px;
+  font-size: 1.1em;
+}
+.tier:nth-child(1) { border-color: var(--plex-forest); }
+.tier:nth-child(2) { border-color: var(--plex-water); }
+.tier:nth-child(3) { border-color: var(--plex-teal); }
+.tier:nth-child(4) { border-color: var(--plex-orange); }
+.tier:nth-child(1) .tier-label { color: var(--plex-forest); }
+.tier:nth-child(2) .tier-label { color: var(--plex-water); }
+.tier:nth-child(3) .tier-label { color: var(--plex-teal); }
+.tier:nth-child(4) .tier-label { color: var(--plex-orange); }
+
+/* Skill tree */
+.skill-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-top: 20px;
+}
+.skill-level {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  margin: 4px 0;
+  position: relative;
+  min-width: 420px;
+}
+.skill-level::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 2px;
+  height: 8px;
+  background: rgba(255,255,255,0.15);
+}
+.skill-level:first-child::before { display: none; }
+.skill-level .level-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95em;
+  flex-shrink: 0;
+}
+.skill-level:nth-child(1) { background: rgba(45,80,22,0.3); }
+.skill-level:nth-child(1) .level-num { background: var(--plex-forest); }
+.skill-level:nth-child(2) { background: rgba(30,77,123,0.3); }
+.skill-level:nth-child(2) .level-num { background: var(--plex-water); }
+.skill-level:nth-child(3) { background: rgba(0,169,165,0.3); }
+.skill-level:nth-child(3) .level-num { background: var(--plex-teal); }
+.skill-level:nth-child(4) { background: rgba(224,122,95,0.3); }
+.skill-level:nth-child(4) .level-num { background: var(--plex-orange); }
+.skill-level:nth-child(5) { background: rgba(255,255,255,0.08); border: 1px solid var(--plex-teal); }
+.skill-level:nth-child(5) .level-num { background: linear-gradient(135deg, var(--plex-teal), var(--plex-water)); }
+.skill-level .agents {
+  font-size: 0.8em;
+  opacity: 0.6;
+  margin-left: auto;
+}
+
+/* List styling */
+.reveal .build-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 20px auto 0;
+  text-align: left;
+}
+.reveal .build-list li {
+  padding: 12px 0;
+  font-size: 1.05em;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reveal .build-list li::before {
+  content: '→';
+  color: var(--plex-teal);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.light-list .build-list li {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+/* Questions list */
+.reveal .questions-list {
+  list-style: none;
+  padding: 0;
+  max-width: 750px;
+  margin: 20px auto 0;
+  text-align: left;
+  counter-reset: q;
+}
+.reveal .questions-list li {
+  padding: 14px 0 14px 48px;
+  font-size: 1em;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  counter-increment: q;
+}
+.reveal .questions-list li::before {
+  content: counter(q);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--plex-teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+/* Section title slides */
+.section-title h2 {
+  font-size: 3.2em;
+  letter-spacing: -0.03em;
+}
+.section-title .subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
+  opacity: 0.6;
+  margin-top: 12px;
+}
+
+/* Counter animation */
+.counter {
+  font-family: 'Spectral', serif;
+  font-weight: 700;
+}
+
+/* Chart container */
+.chart-container {
+  max-width: 550px;
+  margin: 20px auto 0;
+}
+
+/* Subtle glow */
+.glow-teal {
+  text-shadow: 0 0 40px rgba(0,169,165,0.3);
+}
+.glow-orange {
+  text-shadow: 0 0 40px rgba(224,122,95,0.3);
+}
+
+/* Product placeholder */
+.product-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin: 4px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cards-row, .comparison, .pillars { flex-direction: column; align-items: center; }
+  .timeline { flex-wrap: wrap; }
+}
+
+/* Subtle background patterns */
+.pattern-dots {
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Provocation styling */
+.provocation {
+  border-left: 4px solid var(--plex-orange);
+  padding-left: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Fade transition for vertical slides */
+.reveal .slides section section {
+  transition: all 0.6s ease;
+}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 1: THE WAKE-UP CALL (dark)              -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 1: Title -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <div style="margin-top: 60px;">
+    <p style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 0.9em; letter-spacing: 0.15em; text-transform: uppercase; color: var(--plex-teal); margin-bottom: 24px;">Plex Consulting Briefing</p>
+    <h1 style="font-size: 3.4em; color: #fff; margin-bottom: 16px;">Leading in the<br><span style="color: var(--plex-teal);">Age of AI</span></h1>
+    <div style="width: 60px; height: 3px; background: var(--plex-orange); margin: 28px auto;"></div>
+    <p style="font-family: 'Inter', sans-serif; font-size: 1.1em; font-weight: 400; color: rgba(255,255,255,0.7);">Jeff Sutton</p>
+    <p style="font-family: 'Inter', sans-serif; font-size: 0.85em; font-weight: 300; color: rgba(255,255,255,0.4);">March 2026</p>
+  </div>
+</section>
+
+<!-- Slide 2: Icebreaker -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 2.8em; color: #fff; margin-top: 80px;">Who is using AI<br><span style="color: var(--plex-teal);">every day?</span></h2>
+  <p class="fragment" style="font-size: 1.2em; color: rgba(255,255,255,0.5); margin-top: 40px;">Hands up. Be honest.</p>
+</section>
+
+<!-- Slide 3: The Shift -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <h2 style="font-size: 2em; color: rgba(255,255,255,0.9); margin-bottom: 40px;">The Shift</h2>
+  <div class="flow">
+    <div class="flow-box fragment" data-fragment-index="1" style="opacity: 0.5;">
+      <div style="font-size: 0.8em; color: rgba(255,255,255,0.4); margin-bottom: 8px;">The Old Way</div>
+      <div style="font-size: 1.3em;">🔍 Search</div>
+      <div style="font-size: 0.75em; color: rgba(255,255,255,0.4); margin-top: 6px;">10 blue links<br>You find the answer</div>
+    </div>
+    <div class="flow-arrow fragment" data-fragment-index="2">→</div>
+    <div class="flow-box accent fragment" data-fragment-index="2">
+      <div style="font-size: 0.8em; color: rgba(0,169,165,0.7); margin-bottom: 8px;">The New Way</div>
+      <div style="font-size: 1.3em;">💬 Chat</div>
+      <div style="font-size: 0.75em; color: rgba(255,255,255,0.5); margin-top: 6px;">One conversation<br>AI gives you the answer</div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="3" style="margin-top: 40px; font-size: 0.95em; color: rgba(255,255,255,0.5);">The internet just changed its interface.</p>
+</section>
+
+<!-- Slide 4: The Arms Race -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.8em; color: rgba(255,255,255,0.9); margin-bottom: 10px;">The Arms Race</h2>
+  <p style="font-size: 1em; color: rgba(255,255,255,0.4);">OpenAI Annual Revenue</p>
+  <div style="margin-top: 30px;">
+    <div class="fragment" data-fragment-index="1">
+      <p style="font-size: 1.1em; color: rgba(255,255,255,0.5);">2022</p>
+      <div class="big-stat teal" style="font-size: 3em;">$28M</div>
+    </div>
+    <div class="fragment" data-fragment-index="2" style="margin-top: -10px;">
+      <div style="font-size: 3em; color: rgba(255,255,255,0.15);">↓</div>
+    </div>
+    <div class="fragment" data-fragment-index="2">
+      <p style="font-size: 1.1em; color: rgba(255,255,255,0.5);">2025</p>
+      <div class="big-stat orange" style="font-size: 4.5em;" id="revenueCounter">$5B+</div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="3" style="font-size: 1.1em; color: var(--plex-orange); margin-top: 20px; font-weight: 600;">178x growth in 3 years</p>
+</section>
+
+<!-- Slide 5: The Reality -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <h2 style="font-size: 1.8em; color: rgba(255,255,255,0.9); margin-bottom: 30px;">The Reality</h2>
+  <div class="fragment" data-fragment-index="1">
+    <div class="big-stat orange" style="font-size: 4.5em;">42%</div>
+    <p style="font-size: 1.15em; color: rgba(255,255,255,0.7); max-width: 600px; margin: 12px auto;">of companies approve AI use<br>but have <strong style="color: var(--plex-orange);">no platform deployed</strong></p>
+  </div>
+  <div class="fragment" data-fragment-index="2" style="margin-top: 36px;">
+    <div class="big-stat" style="font-size: 3em; color: rgba(255,255,255,0.4);">23%</div>
+    <p style="font-size: 1em; color: rgba(255,255,255,0.4);">just "look the other way"</p>
+  </div>
+  <p class="fragment" data-fragment-index="3" style="font-size: 0.75em; color: rgba(255,255,255,0.25); margin-top: 30px;">Source: Section AI Survey 2024</p>
+</section>
+
+<!-- Slide 6: Who Wins? -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.8em; color: rgba(255,255,255,0.9); margin-bottom: 20px;">Who Wins?</h2>
+  <div class="cards-row">
+    <div class="card fragment" data-fragment-index="1">
+      <h3 style="color: rgba(255,255,255,0.5);">Incumbents</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.4); line-height: 1.8;">
+        Slow to move<br>Rich in data<br>Heavy on capital<br>Loaded with tech debt
+      </div>
+    </div>
+    <div class="card fragment" data-fragment-index="2">
+      <h3 style="color: rgba(255,255,255,0.5);">AI-Native<br>Disruptors</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.4); line-height: 1.8;">
+        Fast & scrappy<br>Creative<br>Zero legacy debt<br>Small teams, big output
+      </div>
+    </div>
+    <div class="card highlighted fragment" data-fragment-index="3">
+      <h3 style="color: var(--plex-teal);">Fast-Moving<br>Incumbents ✓</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.7); line-height: 1.8;">
+        Data advantage<br>AI-augmented teams<br>Speed of a startup<br><strong>Best of both worlds</strong>
+      </div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="4" style="margin-top: 30px; font-size: 1.05em; color: var(--plex-teal); font-weight: 600;">This is where you want to be.</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 2: AI ISN'T NEW (light)                  -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 7: Section Title -->
+<section data-background-color="#f7f8fa" class="section-title">
+  <h2 style="color: var(--dark-text);">AI Isn't New</h2>
+  <div style="width: 60px; height: 3px; background: var(--plex-teal); margin: 20px auto;"></div>
+  <p class="subtitle" style="color: rgba(0,0,0,0.4);">You've been using it for 25 years</p>
+</section>
+
+<!-- Slide 8: Timeline -->
+<section data-background-color="#f7f8fa" class="light-timeline">
+  <h2 style="color: var(--dark-text); font-size: 1.6em; margin-bottom: 0;">The AI You Already Know</h2>
+  <div class="timeline" style="margin-top: 50px;">
+    <div class="timeline-item fragment" data-fragment-index="1">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2001</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.6);">Google Search Ranking</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="2">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2004</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.6);">Gmail Spam Filter</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="3">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2011</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.6);">Siri</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="4">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">2016</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.6);">Google Neural Translate</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="5">
+      <div class="timeline-dot" style="background: var(--plex-orange); box-shadow: 0 0 16px rgba(224,122,95,0.5);"></div>
+      <div class="timeline-year" style="color: var(--plex-orange);">2022</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.8); font-weight: 600;">ChatGPT</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="6">
+      <div class="timeline-dot" style="background: var(--plex-orange); box-shadow: 0 0 16px rgba(224,122,95,0.5);"></div>
+      <div class="timeline-year" style="color: var(--plex-orange);">2024</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.8); font-weight: 600;">Agents</div>
+    </div>
+    <div class="timeline-item fragment" data-fragment-index="7">
+      <div class="timeline-dot" style="background: var(--plex-orange); box-shadow: 0 0 16px rgba(224,122,95,0.5); width: 34px; height: 34px;"></div>
+      <div class="timeline-year" style="color: var(--plex-orange); font-size: 1.1em;">2025</div>
+      <div class="timeline-label" style="color: rgba(0,0,0,0.8); font-weight: 700;">AI Army</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 9: What Changed -->
+<section data-background-color="#f7f8fa">
+  <h2 style="color: var(--dark-text); font-size: 1.6em; margin-bottom: 30px;">What Changed?</h2>
+  <p style="font-size: 2.4em; font-family: 'Spectral', serif; font-weight: 700; color: var(--dark-text); line-height: 1.2;">
+    The interface.<br>
+    <span class="fragment" style="color: var(--plex-teal);">You can now TALK to it.</span>
+  </p>
+</section>
+
+<!-- Slide 10: How it Works -->
+<section data-background-color="#f7f8fa" class="light-flow">
+  <h2 style="color: var(--dark-text); font-size: 1.6em; margin-bottom: 10px;">How It Works</h2>
+  <p style="color: rgba(0,0,0,0.4); font-size: 0.9em;">Massively simplified</p>
+  <div class="flow">
+    <div class="flow-box fragment" data-fragment-index="1" style="color: var(--dark-text);">
+      <div style="font-size: 2em; margin-bottom: 8px;">🧑</div>
+      You type
+    </div>
+    <div class="flow-arrow fragment" data-fragment-index="2" style="color: rgba(0,0,0,0.2);">→</div>
+    <div class="flow-box accent fragment" data-fragment-index="2">
+      <div style="font-size: 2em; margin-bottom: 8px;">🧠</div>
+      LLM
+      <div style="font-size: 0.65em; color: rgba(0,0,0,0.35); margin-top: 4px;">Large Language Model</div>
+    </div>
+    <div class="flow-arrow fragment" data-fragment-index="3" style="color: rgba(0,0,0,0.2);">→</div>
+    <div class="flow-box fragment" data-fragment-index="3" style="color: var(--dark-text);">
+      <div style="font-size: 2em; margin-bottom: 8px;">✨</div>
+      Response
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="4" style="margin-top: 30px; font-size: 0.9em; color: rgba(0,0,0,0.4);">Trained on trillions of words. Predicts the most useful next token.</p>
+</section>
+
+<!-- Slide 11: Your New Teammate -->
+<section data-background-color="#f7f8fa" class="light-list">
+  <h2 style="color: var(--dark-text); font-size: 1.8em; margin-bottom: 10px;">Your New Teammate</h2>
+  <ul class="build-list" style="color: var(--dark-text);">
+    <li class="fragment" data-fragment-index="1">Knows all the internet's information</li>
+    <li class="fragment" data-fragment-index="2">Learns incredibly quickly</li>
+    <li class="fragment" data-fragment-index="3">Analytical <em>and</em> creative</li>
+    <li class="fragment" data-fragment-index="4">Never gets tired</li>
+    <li class="fragment" data-fragment-index="5">Moves across domains seamlessly</li>
+    <li class="fragment" data-fragment-index="6" style="color: var(--plex-teal); font-weight: 600;">Available 24/7 for $20/month</li>
+  </ul>
+</section>
+
+<!-- Slide 12: The Evidence -->
+<section data-background-color="#f7f8fa">
+  <h2 style="color: var(--dark-text); font-size: 1.6em; margin-bottom: 10px;">The Evidence</h2>
+  <p style="color: rgba(0,0,0,0.4); font-size: 0.85em;">Harvard, BCG, Wharton studies (2023-2024)</p>
+  <div class="cards-row" style="margin-top: 30px;">
+    <div class="card light-card fragment" data-fragment-index="1">
+      <div class="card-stat" style="color: var(--plex-teal);">+12%</div>
+      <p style="font-size: 0.95em; margin: 0; font-weight: 500;">More tasks completed</p>
+    </div>
+    <div class="card light-card fragment" data-fragment-index="2">
+      <div class="card-stat" style="color: var(--plex-water);">+25%</div>
+      <p style="font-size: 0.95em; margin: 0; font-weight: 500;">Faster completion</p>
+    </div>
+    <div class="card light-card fragment" data-fragment-index="3">
+      <div class="card-stat" style="color: var(--plex-orange);">+40%</div>
+      <p style="font-size: 0.95em; margin: 0; font-weight: 500;">Higher quality output</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 3: INTERN NOT SOFTWARE (dark)            -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 13: Section Title -->
+<section data-background-color="#1a1a2e" class="section-title pattern-dots">
+  <h2 style="color: #fff;">It's an Intern,<br><span style="color: var(--plex-orange);">Not Software</span></h2>
+</section>
+
+<!-- Slide 14: Software vs AI -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 20px;">A Different Mental Model</h2>
+  <div class="comparison">
+    <div class="col fragment" data-fragment-index="1">
+      <h3 style="border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5);">SOFTWARE</h3>
+      <ul style="list-style: none; padding: 0; line-height: 2.2; color: rgba(255,255,255,0.5);">
+        <li>Deterministic</li>
+        <li>Same input = same output</li>
+        <li>Install and forget</li>
+        <li>0% error rate expected</li>
+      </ul>
+    </div>
+    <div class="col fragment" data-fragment-index="2">
+      <h3 style="color: var(--plex-teal);">AI</h3>
+      <ul style="list-style: none; padding: 0; line-height: 2.2; color: rgba(255,255,255,0.85);">
+        <li>Probabilistic</li>
+        <li>Brilliant but inconsistent</li>
+        <li>Needs management</li>
+        <li>5-10% hallucination rate</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 15: Onboarding quote -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <div class="big-quote" style="color: #fff; margin-top: 60px;">
+    "You don't <em style="color: var(--plex-teal);">install</em> an intern.<br>
+    You <em style="color: var(--plex-orange);">onboard</em> them."
+  </div>
+</section>
+
+<!-- Slide 16: Three Pillars -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 10px;">The Onboarding Framework</h2>
+  <div class="pillars">
+    <div class="pillar forest fragment" data-fragment-index="1">
+      <h3>SET</h3>
+      <div style="font-size: 0.9em; line-height: 1.7; opacity: 0.85;">
+        Expectations<br>Guardrails<br>Context
+      </div>
+    </div>
+    <div class="pillar water fragment" data-fragment-index="2">
+      <h3>TRAIN</h3>
+      <div style="font-size: 0.9em; line-height: 1.7; opacity: 0.85;">
+        Good prompts<br>Examples<br>Feedback loops
+      </div>
+    </div>
+    <div class="pillar teal fragment" data-fragment-index="3">
+      <h3>SUPPORT</h3>
+      <div style="font-size: 0.9em; line-height: 1.7; opacity: 0.85;">
+        Review output<br>Iterate<br>Improve
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 17: Hallucination Handling -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.5em; margin-bottom: 10px;">Verification Tiers</h2>
+  <p style="color: rgba(255,255,255,0.4); font-size: 0.85em;">Match review rigour to the stakes</p>
+  <div class="pyramid">
+    <div class="pyramid-level fragment" data-fragment-index="3">
+      <strong>🔴 Human-Verified</strong><br>
+      <span style="font-size: 0.8em;">Official comms · Financials · Client work</span>
+    </div>
+    <div class="pyramid-level fragment" data-fragment-index="2">
+      <strong>🟡 AI-Verified</strong><br>
+      <span style="font-size: 0.8em;">Code · Copywriting · Internal reports</span>
+    </div>
+    <div class="pyramid-level fragment" data-fragment-index="1">
+      <strong>🟢 Limited Verification</strong><br>
+      <span style="font-size: 0.8em;">Ideation · Brainstorming · Internal drafts</span>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 18: Provocative Quote -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <div class="provocation">
+    <p class="big-quote" style="color: #fff; font-size: 1.7em;">
+      "We bought Copilot licenses"<br>
+      <span style="color: var(--plex-orange);">is not an AI strategy.</span>
+    </p>
+    <p class="fragment" style="font-size: 1.3em; color: var(--plex-teal); font-weight: 600; margin-top: 30px; font-family: 'Spectral', serif;">
+      It's a talent development program.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 4: THE LAST 90 DAYS (light)              -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 19: Section Title -->
+<section data-background-color="#f7f8fa" class="section-title">
+  <h2 style="color: var(--dark-text);">The Last 90 Days</h2>
+  <div style="width: 60px; height: 3px; background: var(--plex-orange); margin: 20px auto;"></div>
+  <p class="subtitle" style="color: rgba(0,0,0,0.4);">What just changed</p>
+</section>
+
+<!-- Slide 20: Agentic AI -->
+<section data-background-color="#f7f8fa" class="light-list">
+  <h2 style="color: var(--dark-text); font-size: 1.8em; margin-bottom: 6px;">Agentic AI</h2>
+  <p style="color: rgba(0,0,0,0.5); font-size: 1.05em;">AI that doesn't just answer — it <strong style="color: var(--plex-teal);">DOES things</strong></p>
+  <ul class="build-list" style="color: var(--dark-text);">
+    <li class="fragment">Browses the web autonomously</li>
+    <li class="fragment">Writes and runs code</li>
+    <li class="fragment">Sends emails and messages</li>
+    <li class="fragment">Deploys websites</li>
+    <li class="fragment">Manages complex workflows</li>
+  </ul>
+</section>
+
+<!-- Slide 21: Reasoning Models -->
+<section data-background-color="#f7f8fa">
+  <h2 style="color: var(--dark-text); font-size: 1.8em; margin-bottom: 6px;">Reasoning Models</h2>
+  <p style="color: rgba(0,0,0,0.5); font-size: 1.05em;">AI that <strong style="color: var(--plex-water);">thinks</strong> before it answers</p>
+  <div class="cards-row" style="margin-top: 30px;">
+    <div class="card light-card fragment" data-fragment-index="1" style="padding: 20px 24px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Anthropic_logo.svg/1200px-Anthropic_logo.svg.png" alt="Anthropic" style="height: 28px; margin-bottom: 8px; filter: brightness(0);">
+      <div style="font-weight: 600;">Claude</div>
+    </div>
+    <div class="card light-card fragment" data-fragment-index="2" style="padding: 20px 24px;">
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: #10a37f; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 1.2em;">○</div>
+      <div style="font-weight: 600;">OpenAI o3</div>
+    </div>
+    <div class="card light-card fragment" data-fragment-index="3" style="padding: 20px 24px;">
+      <div style="width: 36px; height: 36px; border-radius: 8px; background: #4e6ef2; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.7em;">DS</div>
+      <div style="font-weight: 600;">DeepSeek R1</div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="4" style="margin-top: 28px; font-size: 1.05em; color: var(--plex-water); font-weight: 600;">Competition-level maths. PhD-level science.</p>
+</section>
+
+<!-- Slide 22: Cost Collapse -->
+<section data-background-color="#f7f8fa">
+  <h2 style="color: var(--dark-text); font-size: 1.6em; margin-bottom: 6px;">Cost Collapse</h2>
+  <p style="color: rgba(0,0,0,0.5); font-size: 0.95em;">DeepSeek proved frontier AI can run at <strong style="color: var(--plex-orange);">1/10th the cost</strong></p>
+  <div class="chart-container" style="margin-top: 20px;">
+    <canvas id="costChart"></canvas>
+  </div>
+</section>
+
+<!-- Slide 23: AI Coding Tools -->
+<section data-background-color="#f7f8fa" class="light-list">
+  <h2 style="color: var(--dark-text); font-size: 1.8em; margin-bottom: 6px;">AI Coding Tools</h2>
+  <p style="color: rgba(0,0,0,0.5); font-size: 1.05em;">Developers are <strong style="color: var(--plex-teal);">2-5x faster</strong></p>
+  <ul class="build-list" style="color: var(--dark-text);">
+    <li class="fragment">Cursor — AI-native IDE</li>
+    <li class="fragment">Claude Code — terminal agent</li>
+    <li class="fragment">GitHub Copilot — inline autocomplete</li>
+    <li class="fragment" style="color: var(--plex-orange); font-weight: 600; border-bottom: none;">Code is no longer the bottleneck</li>
+  </ul>
+</section>
+
+<!-- Slide 24: The Gap -->
+<section data-background-color="#f7f8fa">
+  <div style="margin-top: 60px;">
+    <p style="font-size: 2.2em; font-family: 'Spectral', serif; font-weight: 700; color: var(--dark-text); line-height: 1.25;">
+      The gap between adopters<br>and laggards is widening<br>
+      <span style="color: var(--plex-orange); text-decoration: underline;">WEEKLY</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 5: WHAT NOW (dark)                       -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 25: Section Title -->
+<section data-background-color="#1a1a2e" class="section-title pattern-dots">
+  <h2>What Now</h2>
+  <div style="width: 60px; height: 3px; background: var(--plex-teal); margin: 20px auto;"></div>
+</section>
+
+<!-- Slide 26: Three Scenarios -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 20px;">Three Scenarios</h2>
+  <div class="cards-row">
+    <div class="card fragment" data-fragment-index="1">
+      <div style="font-size: 0.75em; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Scenario 1</div>
+      <h3 style="color: rgba(255,255,255,0.6);">Niche Tool</h3>
+      <p style="font-size: 0.85em; color: rgba(255,255,255,0.35);">Some industries find use cases. Most don't change.</p>
+    </div>
+    <div class="card highlighted fragment" data-fragment-index="2">
+      <div style="font-size: 0.75em; color: var(--plex-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Scenario 2 — Most Likely</div>
+      <h3 style="color: var(--plex-teal);">Embedded Copilot</h3>
+      <p style="font-size: 0.85em; color: rgba(255,255,255,0.7);">Everyone uses it daily. Like email in the '90s.</p>
+    </div>
+    <div class="card fragment" data-fragment-index="3">
+      <div style="font-size: 0.75em; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Scenario 3</div>
+      <h3 style="color: rgba(255,255,255,0.6);">AGI</h3>
+      <p style="font-size: 0.85em; color: rgba(255,255,255,0.35);">Autonomous problem solver. Full agent economy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 27: Today vs Tomorrow -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 20px;">Today vs Tomorrow</h2>
+  <div class="comparison">
+    <div class="col fragment" data-fragment-index="1" style="text-align: center;">
+      <h3 style="color: var(--plex-teal);">TODAY</h3>
+      <div style="font-size: 1.3em; line-height: 2; color: rgba(255,255,255,0.75);">
+        Generate<br>Evaluate<br>Critique
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; font-size: 2.5em; color: rgba(255,255,255,0.15); padding-top: 40px;" class="fragment" data-fragment-index="2">→</div>
+    <div class="col fragment" data-fragment-index="2" style="text-align: center;">
+      <h3 style="color: var(--plex-orange);">SOON</h3>
+      <div style="font-size: 1.3em; line-height: 2; color: rgba(255,255,255,0.9); font-weight: 500;">
+        Invent<br>Persuade<br>Transact
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 28: The Toolkit -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <h2 style="font-size: 1.5em; margin-bottom: 10px;">The Toolkit</h2>
+  <p style="color: rgba(255,255,255,0.4); font-size: 0.85em;">Start at Tier 1. Level up as you learn.</p>
+  <div class="tier-list">
+    <div class="tier fragment" data-fragment-index="1">
+      <div class="tier-label">Tier 1</div>
+      <div style="font-size: 0.9em;"><strong>Start Here</strong> — Claude Pro / ChatGPT Pro <span style="opacity:0.4;">($20/mo)</span></div>
+    </div>
+    <div class="tier fragment" data-fragment-index="2">
+      <div class="tier-label">Tier 2</div>
+      <div style="font-size: 0.9em;"><strong>Level Up</strong> — Perplexity, Projects, custom instructions</div>
+    </div>
+    <div class="tier fragment" data-fragment-index="3">
+      <div class="tier-label">Tier 3</div>
+      <div style="font-size: 0.9em;"><strong>Build</strong> — Cursor, n8n, Figma AI, automations</div>
+    </div>
+    <div class="tier fragment" data-fragment-index="4">
+      <div class="tier-label">Tier 4</div>
+      <div style="font-size: 0.9em;"><strong>Enterprise</strong> — Ollama, RAG, AI agents, custom models</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 29: Cloud vs Local -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 20px;">Cloud vs Local</h2>
+  <div class="cards-row">
+    <div class="card fragment" data-fragment-index="1">
+      <h3 style="color: rgba(255,255,255,0.6);">☁️ Cloud</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.45); line-height: 1.8;">
+        Best quality models<br>Always up to date<br>Data leaves your network<br>Per-usage cost
+      </div>
+    </div>
+    <div class="card fragment" data-fragment-index="2">
+      <h3 style="color: rgba(255,255,255,0.6);">🏠 Local</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.45); line-height: 1.8;">
+        Free forever<br>Data stays home<br>Runs on your hardware<br>Smaller models
+      </div>
+    </div>
+    <div class="card highlighted fragment" data-fragment-index="3">
+      <h3 style="color: var(--plex-teal);">🔀 Hybrid ✓</h3>
+      <div style="font-size: 0.9em; color: rgba(255,255,255,0.75); line-height: 1.8;">
+        Cloud for quality<br>Local for sensitive data<br>Smart routing<br><strong>This is the play</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 30: AI Army Progression -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <h2 style="font-size: 1.5em; margin-bottom: 10px;">Building Your AI Army</h2>
+  <p style="color: rgba(255,255,255,0.4); font-size: 0.85em;">A progression, not a switch</p>
+  <div class="skill-tree">
+    <div class="skill-level fragment" data-fragment-index="1">
+      <div class="level-num">1</div>
+      <div><strong>Solo User</strong><br><span style="font-size: 0.8em; opacity: 0.6;">Chat with AI for answers</span></div>
+      <div class="agents">0 agents</div>
+    </div>
+    <div class="skill-level fragment" data-fragment-index="2">
+      <div class="level-num">2</div>
+      <div><strong>Power User</strong><br><span style="font-size: 0.8em; opacity: 0.6;">Custom instructions, projects, workflows</span></div>
+      <div class="agents">0 agents</div>
+    </div>
+    <div class="skill-level fragment" data-fragment-index="3">
+      <div class="level-num">3</div>
+      <div><strong>Builder</strong><br><span style="font-size: 0.8em; opacity: 0.6;">Create automations, connect tools</span></div>
+      <div class="agents">5 agents</div>
+    </div>
+    <div class="skill-level fragment" data-fragment-index="4">
+      <div class="level-num">4</div>
+      <div><strong>Operator</strong><br><span style="font-size: 0.8em; opacity: 0.6;">Manage AI teams, monitor quality</span></div>
+      <div class="agents">20 agents</div>
+    </div>
+    <div class="skill-level fragment" data-fragment-index="5">
+      <div class="level-num">5</div>
+      <div><strong>Commander</strong><br><span style="font-size: 0.8em; opacity: 0.6;">Full AI platform, enterprise scale</span></div>
+      <div class="agents">250+ agents</div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide 31: The Mental Model -->
+<section data-background-color="#1a1a2e">
+  <h2 style="font-size: 1.6em; margin-bottom: 10px;">The Mental Model</h2>
+  <p style="color: rgba(255,255,255,0.4); font-size: 0.85em;">Humans bookend the process</p>
+  <div class="flow" style="margin-top: 40px;">
+    <div class="flow-box fragment" data-fragment-index="1" style="border-color: var(--plex-forest); background: rgba(45,80,22,0.2);">
+      <div style="font-size: 1.8em; margin-bottom: 6px;">🧑</div>
+      <strong>YOU</strong>
+      <div style="font-size: 0.75em; opacity: 0.6; margin-top: 4px;">Instigator</div>
+    </div>
+    <div class="flow-arrow fragment" data-fragment-index="2">→</div>
+    <div class="flow-box accent fragment" data-fragment-index="2">
+      <div style="font-size: 1.8em; margin-bottom: 6px;">🤖</div>
+      <strong>AI</strong>
+      <div style="font-size: 0.75em; opacity: 0.6; margin-top: 4px;">Processor</div>
+    </div>
+    <div class="flow-arrow fragment" data-fragment-index="3">→</div>
+    <div class="flow-box fragment" data-fragment-index="3" style="border-color: var(--plex-orange); background: rgba(224,122,95,0.15);">
+      <div style="font-size: 1.8em; margin-bottom: 6px;">🧑</div>
+      <strong>YOU</strong>
+      <div style="font-size: 0.75em; opacity: 0.6; margin-top: 4px;">Judge</div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="4" style="margin-top: 36px; color: var(--plex-teal); font-size: 1em; font-weight: 500;">Human judgment never leaves the loop.</p>
+</section>
+
+<!-- Slide 32: 5 Questions -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <h2 style="font-size: 1.5em; margin-bottom: 6px;">5 Questions to Ask<br>Your CEO on Monday</h2>
+  <ol class="questions-list">
+    <li class="fragment" data-fragment-index="1">What's our AI policy?</li>
+    <li class="fragment" data-fragment-index="2">Who's responsible for AI governance?</li>
+    <li class="fragment" data-fragment-index="3">Where does our data go when staff use AI?</li>
+    <li class="fragment" data-fragment-index="4">What's our 90-day AI pilot plan?</li>
+    <li class="fragment" data-fragment-index="5" style="font-weight: 600; color: var(--plex-orange);">Are we the fast-moving incumbent — or the one being disrupted?</li>
+  </ol>
+</section>
+
+<!-- Slide 33: Closing -->
+<section data-background-color="#1a1a2e">
+  <div style="margin-top: 40px;">
+    <p style="font-size: 2.2em; font-family: 'Spectral', serif; font-weight: 700; color: #fff; line-height: 1.2;">
+      You just got a superpower.
+    </p>
+    <p class="fragment" data-fragment-index="1" style="font-size: 1.5em; font-family: 'Spectral', serif; color: rgba(255,255,255,0.5); margin-top: 20px;">
+      But so did everyone else.
+    </p>
+    <div class="fragment" data-fragment-index="2" style="margin-top: 40px;">
+      <p style="font-size: 1.1em; color: rgba(255,255,255,0.4);">The question is:</p>
+    </div>
+    <p class="fragment" data-fragment-index="3" style="font-size: 3em; font-family: 'Spectral', serif; font-weight: 700; margin-top: 16px;">
+      Where's the<br><span class="glow-teal" style="color: var(--plex-teal);">LEADERSHIP?</span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- BLOCK 6: TRANSITION                            -->
+<!-- ═══════════════════════════════════════════════ -->
+
+<!-- Slide 34: Transition to demos -->
+<section data-background-color="#1a1a2e" class="pattern-dots">
+  <div style="margin-top: 80px;">
+    <p style="font-size: 2.4em; font-family: 'Spectral', serif; font-weight: 600; color: rgba(255,255,255,0.7);">
+      Now let me<br><span style="color: var(--plex-teal);">show you...</span>
+    </p>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<!-- Footer overlay -->
+<div class="slide-footer">Plex Consulting &nbsp;|&nbsp; plex.nz</div>
+
+<!-- Reveal.js -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+// Initialize Reveal.js
+Reveal.initialize({
+  hash: true,
+  width: 1280,
+  height: 720,
+  margin: 0.04,
+  minScale: 0.2,
+  maxScale: 2.0,
+  transition: 'slide',
+  transitionSpeed: 'default',
+  backgroundTransition: 'fade',
+  center: true,
+  controls: true,
+  controlsLayout: 'bottom-right',
+  progress: true,
+  slideNumber: 'c/t',
+  hideInactiveCursor: true,
+  hideCursorTime: 3000,
+});
+
+// Update footer color based on slide background
+function updateFooterColor() {
+  var currentSlide = Reveal.getCurrentSlide();
+  var bg = currentSlide ? currentSlide.getAttribute('data-background-color') : '';
+  var footer = document.querySelector('.slide-footer');
+  if (bg === '#f7f8fa') {
+    footer.style.color = 'rgba(0,0,0,0.25)';
+  } else {
+    footer.style.color = 'rgba(255,255,255,0.35)';
+  }
+}
+Reveal.on('slidechanged', updateFooterColor);
+Reveal.on('ready', updateFooterColor);
+
+// Cost collapse chart
+var costChartCreated = false;
+function createCostChart() {
+  if (costChartCreated) return;
+  var canvas = document.getElementById('costChart');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  costChartCreated = true;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['2023', '2024', '2025'],
+      datasets: [{
+        label: 'Cost per 1M tokens (USD)',
+        data: [60, 15, 2.7],
+        backgroundColor: ['#1E4D7B', '#00A9A5', '#E07A5F'],
+        borderRadius: 8,
+        borderSkipped: false,
+        barPercentage: 0.6,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      animation: { duration: 1500, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) { return '$' + ctx.parsed.y + ' per 1M tokens'; }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 70,
+          ticks: { color: 'rgba(0,0,0,0.4)', callback: function(v) { return '$' + v; } },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+        },
+        x: {
+          ticks: { color: 'rgba(0,0,0,0.6)', font: { weight: 600 } },
+          grid: { display: false },
+        }
+      }
+    }
+  });
+}
+
+// Create chart when that slide is visible
+Reveal.on('slidechanged', function(event) {
+  if (event.currentSlide.querySelector('#costChart')) {
+    setTimeout(createCostChart, 300);
+  }
+});
+Reveal.on('ready', function(event) {
+  if (event.currentSlide.querySelector('#costChart')) {
+    setTimeout(createCostChart, 300);
+  }
+});
+
+// Lucide icons
+lucide.createIcons();
+</script>
+</body>
+</html>

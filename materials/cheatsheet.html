@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Spectral:wght@400;600;700&display=swap');
+
+@page {
+    size: A4;
+    margin: 18mm 16mm 22mm 16mm;
+    @top-right {
+        content: "Plex Consulting";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #1E4D7B;
+    }
+    @bottom-center {
+        content: counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #666666;
+    }
+    @bottom-left {
+        content: "Internal Use Only";
+        font-family: 'Inter', sans-serif;
+        font-size: 7pt;
+        color: #999999;
+    }
+}
+
+@page :first {
+    @top-right { content: none; }
+    @bottom-center { content: none; }
+    @bottom-left { content: none; }
+}
+
+:root {
+    --forest-green: #2D5016;
+    --water-blue: #1E4D7B;
+    --digital-teal: #00A9A5;
+    --warm-orange: #E07A5F;
+    --charcoal: #333333;
+    --off-white: #F8F8F6;
+    --light-grey: #E5E5E5;
+    --mid-grey: #666666;
+    --danger-red: #D32F2F;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--charcoal);
+    background: white;
+}
+
+/* Cover Page */
+.cover {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 85vh;
+    text-align: center;
+    padding: 40mm 15mm;
+}
+
+.cover-bar {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(135deg, var(--forest-green), var(--water-blue));
+    margin-bottom: 40px;
+    border-radius: 3px;
+}
+
+.cover h1 {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 34pt;
+    font-weight: 700;
+    color: var(--forest-green);
+    margin: 0 0 8px 0;
+    line-height: 1.15;
+}
+
+.cover .subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 14pt;
+    font-weight: 300;
+    color: var(--water-blue);
+    margin: 0 0 30px 0;
+}
+
+.cover .meta {
+    font-size: 9pt;
+    color: var(--mid-grey);
+    margin-top: 40px;
+    line-height: 1.8;
+}
+
+.cover .meta strong { color: var(--charcoal); font-weight: 600; }
+
+.cover-bar-bottom {
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(135deg, var(--digital-teal), var(--water-blue));
+    margin: 40px auto 0;
+    border-radius: 2px;
+}
+
+.cover .logo-text {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 11pt;
+    color: var(--forest-green);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 50px;
+    font-weight: 600;
+}
+
+/* Headings */
+h1 {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--forest-green);
+    margin: 28px 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 2.5px solid var(--digital-teal);
+    page-break-after: avoid;
+}
+
+h2 {
+    font-family: 'Spectral', Georgia, serif;
+    font-size: 15pt;
+    font-weight: 600;
+    color: var(--water-blue);
+    margin: 22px 0 10px 0;
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--light-grey);
+    page-break-after: avoid;
+}
+
+h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--forest-green);
+    margin: 16px 0 8px 0;
+    page-break-after: avoid;
+}
+
+/* Body */
+p { margin: 0 0 8px 0; }
+strong { font-weight: 600; }
+
+ul, ol { margin: 6px 0 10px 0; padding-left: 22px; }
+li { margin-bottom: 4px; }
+
+/* Callout Boxes */
+.tip-box {
+    background: #f0f7f2;
+    border-left: 4px solid var(--forest-green);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 9.5pt;
+}
+
+.tip-box .tip-title {
+    font-weight: 700;
+    color: var(--forest-green);
+    margin-bottom: 4px;
+}
+
+.warning-box {
+    background: #fef3f0;
+    border-left: 4px solid var(--danger-red);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 9.5pt;
+}
+
+.warning-box .warning-title {
+    font-weight: 700;
+    color: var(--danger-red);
+    margin-bottom: 4px;
+}
+
+.info-box {
+    background: #eef5fa;
+    border-left: 4px solid var(--water-blue);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 9.5pt;
+}
+
+.info-box .info-title {
+    font-weight: 700;
+    color: var(--water-blue);
+    margin-bottom: 4px;
+}
+
+.example-box {
+    background: #f0fafa;
+    border-left: 4px solid var(--digital-teal);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 9.5pt;
+}
+
+.example-box .example-title {
+    font-weight: 700;
+    color: var(--digital-teal);
+    margin-bottom: 4px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 9pt;
+    page-break-inside: auto;
+}
+
+th {
+    background: linear-gradient(135deg, var(--forest-green), var(--water-blue));
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--light-grey);
+    vertical-align: top;
+}
+
+tr:nth-child(even) td { background: var(--off-white); }
+
+/* Steps */
+.step {
+    display: flex;
+    margin: 10px 0;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.step-number {
+    background: var(--water-blue);
+    color: white;
+    font-weight: 700;
+    font-size: 14pt;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.step-content { flex: 1; }
+
+/* Page breaks */
+.page-break { page-break-before: always; }
+
+/* Cheat sheet styling */
+.cheat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.cheat-card {
+    background: var(--off-white);
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.cheat-card h4 {
+    font-size: 9pt;
+    color: var(--water-blue);
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.cheat-card p {
+    font-size: 8.5pt;
+    margin: 0;
+    color: var(--mid-grey);
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(135deg, var(--forest-green), var(--water-blue), var(--digital-teal));
+    margin: 20px 0;
+    border-radius: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+    <div class="cover-bar"></div>
+    <h1>Getting Started<br>with Claude</h1>
+    <p class="subtitle">A Practical Guide for Leaders and Teams</p>
+    <div class="cover-bar-bottom"></div>
+    <div class="meta">
+        <strong>Session Date:</strong> 23 March 2026<br>
+        <strong>Audience:</strong> Leadership &amp; Team Members<br>
+        <strong>Classification:</strong> Internal Use Only<br>
+        <strong>Prepared by:</strong> Plex Consulting
+    </div>
+    <div class="logo-text">Plex Consulting</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: WHAT IS CLAUDE? -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<h1>1. What Is Claude?</h1>
+
+<p>Claude is an AI assistant built by <strong>Anthropic</strong>, designed to be helpful, harmless, and honest. Think of it as a highly capable colleague who can read, write, analyse, and create &mdash; available whenever you need it.</p>
+
+<h2>What Can Claude Do for You?</h2>
+
+<table>
+<thead><tr><th>Task</th><th>Example</th><th>Time Saved</th></tr></thead>
+<tbody>
+<tr><td>Draft emails and communications</td><td>"Write a follow-up email to the client about the Q2 review"</td><td>10&ndash;15 min</td></tr>
+<tr><td>Summarise long documents</td><td>"Summarise this 40-page report into key findings"</td><td>30&ndash;60 min</td></tr>
+<tr><td>Prepare meeting briefs</td><td>"Create a briefing note for tomorrow's board meeting on X"</td><td>20&ndash;30 min</td></tr>
+<tr><td>Analyse data and trends</td><td>"What patterns do you see in this sales data?"</td><td>15&ndash;30 min</td></tr>
+<tr><td>Create presentations</td><td>"Draft a 5-slide deck on our digital transformation progress"</td><td>30&ndash;45 min</td></tr>
+<tr><td>Review and improve writing</td><td>"Make this proposal more concise and compelling"</td><td>10&ndash;20 min</td></tr>
+<tr><td>Research topics quickly</td><td>"What are the current best practices for hybrid work policies?"</td><td>20&ndash;40 min</td></tr>
+<tr><td>Build spreadsheet formulas</td><td>"Write an Excel formula that calculates YoY growth by region"</td><td>5&ndash;15 min</td></tr>
+</tbody>
+</table>
+
+<div class="tip-box">
+    <div class="tip-title">The 80/20 Rule</div>
+    Most people get 80% of their value from Claude by using it for just three things: <strong>drafting written content</strong>, <strong>summarising information</strong>, and <strong>preparing for meetings</strong>. Start there.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: GETTING SET UP -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>2. Getting Set Up</h1>
+
+<h2>Step-by-Step: Your First 5 Minutes</h2>
+
+<div class="step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <strong>Go to claude.ai</strong><br>
+        Open your browser and visit <strong>claude.ai</strong>. Click <em>Sign Up</em> using your work email address.
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <strong>Verify your email</strong><br>
+        Check your inbox for a verification link. Click it to activate your account.
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <strong>Choose your plan</strong><br>
+        The <strong>free plan</strong> gives you access to Claude. The <strong>Pro plan</strong> (US$20/month) unlocks more messages, faster responses, and advanced features like Projects and extended thinking. We recommend Pro for daily use.
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+        <strong>Start a conversation</strong><br>
+        Type your first message in the chat box. Be specific about what you need. The more context you give, the better the response.
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">5</div>
+    <div class="step-content">
+        <strong>Download the desktop app</strong> (optional but recommended)<br>
+        Visit <strong>claude.ai/download</strong> for Windows or Mac. The desktop app lets you use <strong>Cowork</strong> mode (covered in Section 5) and keeps Claude one click away.
+    </div>
+</div>
+
+<div class="info-box">
+    <div class="info-title">Pro vs Free &mdash; What's the Difference?</div>
+    <strong>Free:</strong> Good for trying Claude. Limited messages per day, basic model only.<br>
+    <strong>Pro (US$20/mo):</strong> More messages, faster responses, Projects (memory), Cowork (file creation), extended thinking for complex problems. Worth it if you use Claude daily.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 3: SAFETY FIRST -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>3. Using Claude Safely</h1>
+
+<p>Claude is a powerful tool, but like any tool, it needs to be used responsibly. These rules will keep you and your organisation safe.</p>
+
+<h2>The Golden Rules</h2>
+
+<div class="warning-box">
+    <div class="warning-title">NEVER share with Claude:</div>
+    <ul style="margin: 6px 0 0 0;">
+        <li><strong>Passwords or login credentials</strong></li>
+        <li><strong>Credit card or bank account numbers</strong></li>
+        <li><strong>Customer personal information</strong> (names + addresses + account numbers together)</li>
+        <li><strong>Confidential HR matters</strong> (performance reviews, disciplinary records with names)</li>
+        <li><strong>Trade secrets or proprietary formulas</strong></li>
+        <li><strong>Information under NDA</strong> unless your agreement permits AI tool use</li>
+    </ul>
+</div>
+
+<div class="tip-box">
+    <div class="tip-title">SAFE to share with Claude:</div>
+    <ul style="margin: 6px 0 0 0;">
+        <li>General business questions and strategy discussions</li>
+        <li>Draft documents, emails, and presentations</li>
+        <li>Anonymised or aggregated data</li>
+        <li>Publicly available information</li>
+        <li>Internal process descriptions (without credentials)</li>
+        <li>Your own writing for review and improvement</li>
+    </ul>
+</div>
+
+<h2>Always Verify</h2>
+
+<p>Claude is highly capable, but it can occasionally get things wrong. <strong>Always apply your professional judgement</strong> before acting on Claude's output, especially for:</p>
+
+<ul>
+    <li><strong>Numbers and statistics</strong> &mdash; double-check any figures against source data</li>
+    <li><strong>Legal or compliance matters</strong> &mdash; confirm with your legal team</li>
+    <li><strong>Company-specific policies</strong> &mdash; Claude knows general best practice, not your specific rules</li>
+    <li><strong>Dates and deadlines</strong> &mdash; verify against your actual calendar</li>
+</ul>
+
+<div class="info-box">
+    <div class="info-title">Think of Claude as a Smart Intern</div>
+    It's well-read, fast, and eager to help &mdash; but you still need to review its work before it goes out the door. You are responsible for anything you publish, send, or act on.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 4: GETTING GREAT RESULTS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>4. Getting Great Results</h1>
+
+<h2>The Art of the Prompt</h2>
+
+<p>The quality of Claude's output depends almost entirely on the quality of your input. Here's how to get the best results:</p>
+
+<h3>Be Specific About What You Want</h3>
+
+<table>
+<thead><tr><th style="width:45%">Instead of this...</th><th style="width:55%">Try this...</th></tr></thead>
+<tbody>
+<tr><td>"Write me an email"</td><td>"Write a professional email to our supplier asking for a 15% volume discount on office supplies for Q3, mentioning our 8-year relationship"</td></tr>
+<tr><td>"Summarise this document"</td><td>"Summarise this document in 5 bullet points, focusing on financial risks and recommended actions"</td></tr>
+<tr><td>"Help me with a presentation"</td><td>"Create a 6-slide outline for a board presentation on our digital transformation progress. Include: achievements, risks, budget status, and next quarter priorities"</td></tr>
+<tr><td>"Analyse this data"</td><td>"Look at this sales data and identify: top 3 growth categories, any declining trends, and seasonal patterns. Present findings in a table"</td></tr>
+</tbody>
+</table>
+
+<h3>Give Context</h3>
+
+<p>Claude doesn't know your organisation, your role, or your audience unless you tell it. Adding context dramatically improves results:</p>
+
+<div class="example-box">
+    <div class="example-title">Example: Good Context</div>
+    "I'm the Head of Operations at a mid-size distribution company. I need to present our warehouse efficiency improvements to the CEO, who cares most about cost savings and customer impact. Draft a one-page summary."
+</div>
+
+<h3>Iterate and Refine</h3>
+
+<p>Your first prompt rarely produces a perfect result. Treat it as a conversation:</p>
+
+<ul>
+    <li>"Make it more concise"</li>
+    <li>"Add more detail to the financial section"</li>
+    <li>"Change the tone to be more formal"</li>
+    <li>"Actually, restructure this with the recommendation first"</li>
+</ul>
+
+<div class="tip-box">
+    <div class="tip-title">Power Move: Extended Thinking</div>
+    For complex problems (strategy questions, multi-step analysis, difficult decisions), toggle on <strong>Extended Thinking</strong> at the top of the chat. This tells Claude to think through the problem step-by-step before answering. It takes longer but produces significantly better results for complex tasks.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 5: PROJECTS -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>5. Projects &mdash; Your Memory Layer</h1>
+
+<p>By default, Claude starts each conversation fresh &mdash; it doesn't remember previous chats. <strong>Projects</strong> solve this by giving Claude persistent context.</p>
+
+<h2>How Projects Work</h2>
+
+<ol>
+    <li>Click <strong>"Projects"</strong> in the left sidebar</li>
+    <li>Click <strong>"New Project"</strong></li>
+    <li>Give it a clear name (e.g., "Q3 Board Reporting", "Marketing Campaign", "Team KPIs")</li>
+    <li>Add <strong>Project Knowledge</strong>: upload documents, paste instructions, or write context that Claude should always have access to in this project</li>
+    <li>Start new chats inside the project &mdash; Claude will always have your project knowledge available</li>
+</ol>
+
+<div class="example-box">
+    <div class="example-title">Example: Setting Up a "Weekly Reporting" Project</div>
+    <strong>Project Knowledge you might add:</strong>
+    <ul style="margin-top: 4px;">
+        <li>A file describing your reporting format and KPIs</li>
+        <li>A note: "I report to the GM every Monday. Reports should be concise, data-driven, and highlight exceptions. Use bullet points, not paragraphs."</li>
+        <li>Last month's report as a template</li>
+    </ul>
+    Now every chat in this project automatically follows your preferences without you repeating yourself.
+</div>
+
+<div class="tip-box">
+    <div class="tip-title">Best Practice</div>
+    Create <strong>one project per recurring task or client</strong>. Don't put everything in one mega-project. Five focused projects are better than one cluttered one.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 6: COWORK -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>6. Cowork &mdash; Your Output Layer</h1>
+
+<p><strong>Cowork</strong> transforms Claude from a chat assistant into a document creator. Instead of just typing responses in the chat, Claude can create and edit real files directly on your computer.</p>
+
+<h2>What Cowork Can Create</h2>
+
+<table>
+<thead><tr><th>File Type</th><th>Use Case</th></tr></thead>
+<tbody>
+<tr><td>Word documents (.docx)</td><td>Reports, proposals, letters, briefs</td></tr>
+<tr><td>Spreadsheets (.xlsx)</td><td>Budgets, trackers, analysis templates</td></tr>
+<tr><td>Presentations (.pptx)</td><td>Slide decks, pitch materials</td></tr>
+<tr><td>PDFs</td><td>Finished documents for distribution</td></tr>
+<tr><td>HTML pages</td><td>Simple dashboards, reports with charts</td></tr>
+</tbody>
+</table>
+
+<h2>How to Use Cowork</h2>
+
+<div class="step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <strong>Open the Claude desktop app</strong> (Cowork requires the desktop app, not the web browser)
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <strong>Create a Cowork folder</strong> on your desktop or Documents. This is where Claude will save files. Tell Claude: "My cowork folder is at [path]"
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <strong>Ask Claude to create something</strong>: "Create a Word document summarising Q2 results" or "Build me a budget tracker spreadsheet"
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+        <strong>Edit live</strong>: Tell Claude to make changes &mdash; "Add a column for variance" or "Change the header to blue". It updates the file in real time.
+    </div>
+</div>
+
+<div class="tip-box">
+    <div class="tip-title">Pro Tip: Read First, Then Ask</div>
+    You can also drop existing files into the chat. Tell Claude: "Read my files first, then ask me questions before you start." This ensures Claude understands your context before creating anything.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 7: DAILY USE CASES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>7. Daily Use Cases for Leaders</h1>
+
+<h2>Monday Morning: Weekly Planning</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "I have these meetings this week: [paste calendar]. For each meeting, give me a one-line prep note on what I should focus on, based on these current priorities: [list your top 3 priorities]."
+</div>
+
+<h2>Before a Meeting: Quick Brief</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "I'm meeting with [Name] from [Company] in 30 minutes about [Topic]. Give me: 3 questions I should ask, 2 potential objections they might raise, and a suggested opening line."
+</div>
+
+<h2>After a Meeting: Action Items</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "Here are my rough notes from today's meeting: [paste notes]. Turn these into: a clean summary (3 sentences), a table of action items with owners and due dates, and a follow-up email to attendees."
+</div>
+
+<h2>Email Drafting</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "Draft a response to this email: [paste email]. My position is [your stance]. Keep it professional but firm. No more than 150 words."
+</div>
+
+<h2>Document Review</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "Review this proposal and give me: the 3 strongest points, the 3 weakest points, any missing information, and suggested improvements. Be direct."
+</div>
+
+<h2>Data Interpretation</h2>
+<div class="example-box">
+    <div class="example-title">Prompt</div>
+    "Here's our monthly sales data [paste or upload]. What story does this data tell? What should I be concerned about? What would you recommend we investigate further?"
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 8: COMMON MISTAKES -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>8. Common Mistakes to Avoid</h1>
+
+<table>
+<thead><tr><th style="width:40%">Mistake</th><th style="width:60%">Better Approach</th></tr></thead>
+<tbody>
+<tr><td>Pasting your bio into every new chat</td><td>Use <strong>Projects</strong> &mdash; add your bio once, it's always there</td></tr>
+<tr><td>One mega-project for everything</td><td>One project per recurring task or topic</td></tr>
+<tr><td>Accepting the first response as final</td><td>Iterate: "Make it shorter", "Add more data", "Change the tone"</td></tr>
+<tr><td>Vague prompts ("help me with this")</td><td>Specific prompts with context, audience, format, and length</td></tr>
+<tr><td>Sharing sensitive data</td><td>Anonymise first, or describe the scenario without real data</td></tr>
+<tr><td>Not using Extended Thinking for complex tasks</td><td>Toggle it on for strategy, analysis, and multi-step problems</td></tr>
+<tr><td>Treating Claude's output as fact</td><td>Verify numbers, dates, and claims against source data</td></tr>
+<tr><td>Writing a novel as your prompt</td><td>Be concise but specific. Quality over quantity in prompts.</td></tr>
+</tbody>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECTION 9: QUICK REFERENCE CARD -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>9. Quick Reference Card</h1>
+
+<h2>Keyboard Shortcuts (Claude Desktop)</h2>
+
+<table>
+<thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td><strong>Ctrl + N</strong></td><td>New conversation</td></tr>
+<tr><td><strong>Ctrl + Shift + N</strong></td><td>New conversation in current project</td></tr>
+<tr><td><strong>/</strong></td><td>Open command menu</td></tr>
+<tr><td><strong>Ctrl + K</strong></td><td>Quick search conversations</td></tr>
+</tbody>
+</table>
+
+<h2>Prompt Templates You Can Copy</h2>
+
+<div class="cheat-grid">
+    <div class="cheat-card">
+        <h4>Summarise a Document</h4>
+        <p>"Summarise this in [X] bullet points, focusing on [topic]. Highlight any risks or actions needed."</p>
+    </div>
+    <div class="cheat-card">
+        <h4>Draft an Email</h4>
+        <p>"Write a [tone] email to [who] about [what]. Key point: [main message]. Keep it under [X] words."</p>
+    </div>
+    <div class="cheat-card">
+        <h4>Meeting Prep</h4>
+        <p>"I'm meeting [who] about [what]. Give me 3 questions to ask, 2 risks to raise, and a suggested agenda."</p>
+    </div>
+    <div class="cheat-card">
+        <h4>Improve My Writing</h4>
+        <p>"Rewrite this to be more [concise/formal/persuasive]. Keep the core message but improve clarity."</p>
+    </div>
+    <div class="cheat-card">
+        <h4>Analyse Data</h4>
+        <p>"What trends do you see? What's the story? What should I be worried about? Present key findings in a table."</p>
+    </div>
+    <div class="cheat-card">
+        <h4>Create a Framework</h4>
+        <p>"Create a [decision matrix / evaluation framework / scoring rubric] for [decision]. Include [criteria]."</p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- APPENDIX A: CLI -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<h1>Appendix A: Claude Code (CLI)</h1>
+
+<p><em>This section is for those who want to go further. Claude Code is a command-line tool that lets Claude work directly with files, code, and your computer. It's powerful but requires comfort with a terminal.</em></p>
+
+<h2>What Is Claude Code?</h2>
+
+<p>Claude Code runs in your terminal (Command Prompt, PowerShell, or Mac Terminal). Instead of chatting in a browser, you give Claude direct access to your files and it can read, edit, and create them &mdash; plus run commands. Think of it as giving Claude hands, not just a voice.</p>
+
+<h2>When to Use CLI vs Chat</h2>
+
+<table>
+<thead><tr><th>Use Chat/Cowork When...</th><th>Use CLI When...</th></tr></thead>
+<tbody>
+<tr><td>Drafting documents and emails</td><td>Working with code or scripts</td></tr>
+<tr><td>Quick questions and brainstorming</td><td>Bulk file operations</td></tr>
+<tr><td>Creating presentations</td><td>Automating repetitive tasks</td></tr>
+<tr><td>You prefer a visual interface</td><td>You're comfortable with a terminal</td></tr>
+</tbody>
+</table>
+
+<h2>Getting Started with CLI</h2>
+
+<div class="step">
+    <div class="step-number">1</div>
+    <div class="step-content">
+        <strong>Install Node.js</strong> from nodejs.org (if not already installed)
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <strong>Install Claude Code</strong>: Open your terminal and run:<br>
+        <code>npm install -g @anthropic-ai/claude-code</code>
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <strong>Navigate to your project folder</strong> and type <code>claude</code> to start a session
+    </div>
+</div>
+
+<div class="step">
+    <div class="step-number">4</div>
+    <div class="step-content">
+        <strong>Talk naturally</strong>: "Read all the files in this folder and tell me what this project does" or "Create a script that renames all files in this folder to lowercase"
+    </div>
+</div>
+
+<div class="info-box">
+    <div class="info-title">CLI Safety Note</div>
+    Claude Code will ask for your permission before making changes to files or running commands. Always read what it's proposing before approving. You can set permission levels to control how much autonomy Claude has.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- BACK PAGE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+<div style="text-align: center; padding-top: 200px;">
+    <div class="cover-bar" style="width: 40%; margin: 0 auto 30px;"></div>
+    <p style="font-family: 'Spectral', Georgia, serif; font-size: 14pt; color: var(--forest-green); font-weight: 600; letter-spacing: 3px; text-transform: uppercase;">Plex Consulting</p>
+    <p style="font-size: 9pt; color: var(--mid-grey); margin-top: 20px; line-height: 1.8;">
+        Questions? Reach out to your session facilitator<br>
+        or email <strong>jeff@plex.nz</strong>
+    </p>
+    <div class="cover-bar-bottom" style="margin-top: 40px;"></div>
+    <p style="font-size: 8pt; color: var(--mid-grey); margin-top: 30px;">
+        This guide will be updated as new features become available.<br>
+        Version 1.0 &mdash; March 2026
+    </p>
+</div>
+
+</body>
+</html>

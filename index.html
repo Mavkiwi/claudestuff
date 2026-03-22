@@ -176,6 +176,93 @@ h1 span { color: var(--teal); }
   transform: translateY(-2px);
 }
 
+/* Resources section */
+.resources {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 48px;
+  max-width: 900px;
+  animation: fadeIn 1s ease 1.5s both;
+}
+
+.resource-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 28px 24px;
+  text-align: center;
+  text-decoration: none;
+  color: #f0f0f0;
+  min-width: 200px;
+  flex: 1;
+  max-width: 260px;
+  transition: all 0.3s ease;
+}
+
+.resource-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,169,165,0.15);
+}
+
+.resource-card .rc-icon {
+  font-size: 2em;
+  margin-bottom: 12px;
+}
+
+.resource-card .rc-title {
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+.resource-card .rc-desc {
+  font-size: 0.8em;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+
+.resource-card.highlight {
+  border-color: rgba(0,169,165,0.4);
+  background: rgba(0,169,165,0.06);
+}
+
+/* QR section */
+.qr-section {
+  margin-top: 48px;
+  animation: fadeIn 1s ease 1.7s both;
+  text-align: center;
+}
+
+.qr-section img {
+  width: 180px;
+  height: auto;
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px;
+}
+
+.qr-section .qr-label {
+  font-size: 0.75em;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* Section heading */
+.section-label {
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-top: 56px;
+  margin-bottom: 4px;
+  animation: fadeIn 1s ease 1.4s both;
+}
+
 /* Footer */
 footer {
   position: relative;
@@ -244,10 +331,35 @@ footer a:hover { color: var(--teal); }
     <div class="topic">Building AI Teams</div>
     <div class="topic">Tools & Platforms</div>
   </div>
+
+  <div class="section-label">Training Materials</div>
+  <div class="resources">
+    <a href="/materials/cheatsheet.html" class="resource-card highlight">
+      <div class="rc-icon">📋</div>
+      <div class="rc-title">Quick Reference Guide</div>
+      <div class="rc-desc">Claude cheatsheet with prompts, shortcuts, and tips</div>
+    </a>
+    <a href="/materials/presentation.html" class="resource-card">
+      <div class="rc-icon">📊</div>
+      <div class="rc-title">Slide Deck</div>
+      <div class="rc-desc">Full presentation — Leading in the Age of AI</div>
+    </a>
+    <a href="https://plex.nz" class="resource-card">
+      <div class="rc-icon">🌐</div>
+      <div class="rc-title">Plex Consulting</div>
+      <div class="rc-desc">Visit plex.nz for consulting services and resources</div>
+    </a>
+  </div>
+
+  <div class="section-label">Scan to Access</div>
+  <div class="qr-section">
+    <img src="/qr-training.png" alt="QR Code — AI Training Hub">
+    <div class="qr-label">Scan with your phone to open this page</div>
+  </div>
 </main>
 
 <footer>
-  <a href="https://plex.nz">plex.nz</a> &nbsp;&middot;&nbsp; AI Training Hub
+  <a href="https://plex.nz">plex.nz</a> &nbsp;&middot;&nbsp; AI Training Hub &nbsp;&middot;&nbsp; &copy; 2026 Plex Consulting Ltd
 </footer>
 </body>
 </html>
